@@ -5,7 +5,7 @@ function QestionsTypes() {
 
     return (
         <div className="flex justify-between items-center">
-            <div className="flex gap-4">
+            <div className="flex gap-4 flex-col md:flex-row">
                 <label className="flex items-center gap-1 cursor-pointer text-xl">
                     <input 
                     type="radio" 

@@ -1,19 +1,21 @@
 import { lazy, Suspense } from "react"
-import {  Route, Routes } from "react-router-dom"
+import { Route, Routes, Navigate } from "react-router-dom"
 function App() {
   const Chat = lazy(() => import("./pages/Chat"))
-  const Login = lazy(() => import("./pages/Login"))
-  const Register = lazy(() => import("./pages/Register"))
+  const Auth = lazy(() => import("./pages/Auth"))
+  const LoginForm = lazy(() => import("./components/LoginForm"))
+  const RegisterForm = lazy(() => import("./components/RegisterForm"))
   return (
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
-        <Route index path="/" element={<Login/>} />
-        <Route path="/chat" element={<Chat/>} />
-        <Route path="/register" element={<Register/>} />
+        <Route index path="/" element={<Navigate to="/auth" replace />} />
+        <Route path="/auth" element={<Auth />}>
+          <Route index element={<LoginForm />} />
+          <Route path="register" element={<RegisterForm />} />
+        </Route>
+        <Route path="/chat" element={<Chat />} />
       </Routes>
     </Suspense>
-    
   )
 }
-
 export default App
